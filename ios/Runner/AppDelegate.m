@@ -13,8 +13,27 @@
                                             methodChannelWithName: @"fadyfawzy.com/battery"
                                             binaryMessenger:controller.binaryMessenger];
     
+    // The implementation of this platform method calls the iOS code written in the getBatteryLevel Method,
+    // and returns a response for both the success and error cases using the result argument.
+    // If an unknown method is called, report that instead.
+    __weak typeof(self) weakSelf = self;
     [batteryChannel setMethodCallHandler: ^(FlutterMethodCall* call, FlutterResult result) {
         // This method is invoked on the UI thread.
+        if ([@"getBatteryLevel" isEqualToString:call.method]) {
+            int batteryLevel = [weakSelf getBatteryLevel];
+            
+            // You should now be able to run the app on iOS. If using the iOS Simulator,
+            // note that it doesn’t support battery APIs, and the app displays ‘Battery level not available’.
+            if (batteryLevel == -1) {
+                result([FlutterError errorWithCode:@"UNAVAILABLE"
+                                           message:@"Battery level not available."
+                                           details:nil]);
+            } else {
+                result(@(batteryLevel));
+            }
+        } else {
+            result(FlutterMethodNotImplemented);
+        }
     }];
 
   [GeneratedPluginRegistrant registerWithRegistry:self];
