@@ -1,16 +1,21 @@
-# batterylevel
+# Battery Level 🔋🪫
 
-A new Flutter project.
+Battery Level App is a Flutter Project & It's an Example of Running or Calling
+Platform-Specific (Android or iOS) Code in Flutter using platform channels.
 
-## Getting Started
+## Our Goal
 
-This project is a starting point for a Flutter application.
+Battery Level App is for learning purpose.
+It's the 7th App which in:
+the 15th Section (Running Native Swift, ObjectiveC, Java or Kotlin Code)
+of Flutter & Dart - The Complete Guide [2023 Edition] Course (On Udemy)
 
-A few resources to get you started if this is your first Flutter project:
+Flutter version: 3.7.10
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Created & Developed by:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Eng.Fady Fawzy
+
+Mobile Application Developer
+
+FadyFawzy.Official@gmail.com
