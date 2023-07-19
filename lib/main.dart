@@ -40,18 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Center(child: Text(_batteryLevel));
+  Widget build(BuildContext context) =>
+      Scaffold(body: Center(child: Text(_batteryLevel)));
 
   Future<void> _getBatteryLevel() async {
     String batteryLevel;
 
     try {
       final int result = await platform.invokeMethod('getBatteryLevel');
-      batteryLevel = 'Battery Level at $result % .';
+      batteryLevel = 'Battery Level at $result%.';
     } on PlatformException catch (e) {
       batteryLevel = "Failed to get battery level: '${e.message}'.";
     }
 
-    _batteryLevel = batteryLevel;
+    setState(() => _batteryLevel = batteryLevel);
   }
 }
