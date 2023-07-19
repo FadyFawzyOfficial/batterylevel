@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(const App());
 
@@ -27,10 +28,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static const platform = MethodChannel('fadyfawzy.com/battery');
+
+  // Get battery level.
+  String _batteryLevel = 'Unknown battery level.';
+
   @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Battery Level ...'),
-    );
+  void initState() {
+    super.initState();
+    _getBatteryLevel();
+  }
+
+  @override
+  Widget build(BuildContext context) => Center(child: Text(_batteryLevel));
+
+  Future<void> _getBatteryLevel() async {
+    String batteryLevel;
+
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery Level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+
+    _batteryLevel = batteryLevel;
   }
 }
