@@ -22,4 +22,17 @@
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
+// Add the iOS ObjectiveC code that uses the iOS battery APIs to retrieve the battery level.
+// This code is exactly the same as you would write in a native iOS app.
+// Add the following method in the AppDelegate class, just before @end:
+- (int)getBatteryLevel {
+    UIDevice* device = UIDevice.currentDevice;
+    device.batteryMonitoringEnabled = YES;
+    if (device.batteryState == UIDeviceBatteryStateUnknown) {
+        return -1;
+    } else {
+        return (int)(device.batteryLevel * 100);
+    }
+}
+
 @end
